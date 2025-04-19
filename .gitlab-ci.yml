@@ -22,9 +22,12 @@ build-job:
   artifacts:
     paths:
       - build/libs/*.jar
-
+  only:
+    - main
 
 test-job:
   stage: test
   script:
     - gradle test
+  only:
+    - main
