@@ -23,6 +23,7 @@ build-job:
     paths:
       - build/libs/*.jar
 
+
 test-job:
   stage: test
   script:
