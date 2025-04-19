@@ -1,0 +1,29 @@
+image: gradle:8.5-jdk17
+
+stages:
+  - build
+  - test
+
+variables:
+  GRADLE_USER_HOME: "$CI_PROJECT_DIR/.gradle"
+
+cache:
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
+
+before_script:
+  - export TZ=Asia/Seoul
+
+build-job:
+  stage: build
+  script:
+    - gradle clean build -x test
+  artifacts:
+    paths:
+      - build/libs/*.jar
+
+test-job:
+  stage: test
+  script:
+    - gradle test
