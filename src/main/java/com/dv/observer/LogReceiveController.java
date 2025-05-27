@@ -1,5 +1,6 @@
 package com.dv.observer;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,12 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/logs")
+@RequiredArgsConstructor
+@RequestMapping("api/logs")
 public class LogReceiveController {
+
+    private final LogService logService;
 
     @PostMapping
     public ResponseEntity<String> receiveLog(@RequestBody LogReceiveRequestDto requestDto) {
-        System.out.println("Received log: " + requestDto);
-        return ResponseEntity.ok("Log received");
+        logService.save(requestDto);
+        return ResponseEntity.ok("Log saved");
     }
 }
