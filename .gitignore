@@ -25,4 +25,5 @@ Thumbs.db
 # Others
 out/
 
-.yml
+
+*.yml
